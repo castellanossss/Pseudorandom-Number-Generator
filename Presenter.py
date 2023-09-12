@@ -34,7 +34,7 @@ class Presenter:
         self.main_frame.tab5.generate_button_clicked.connect(self.manage_tab5_info)
 
         # Define the project directory and output directory paths
-        self.project_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        self.project_dir = os.path.dirname(os.path.dirname(__file__))
         self.output_dir = os.path.join(self.project_dir, 'output')
 
         # Create the output directory if it doesn't exist
