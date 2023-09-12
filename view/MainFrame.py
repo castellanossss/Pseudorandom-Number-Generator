@@ -1,5 +1,5 @@
-import sys
-from PyQt6.QtWidgets import QMainWindow, QTabWidget, QApplication
+import os
+from PyQt6.QtWidgets import QMainWindow, QTabWidget
 from PyQt6.QtGui import QIcon
 
 from view.LCMTabContent import LCMTabContent
@@ -25,8 +25,14 @@ class MainFrame(QMainWindow):
         # Set the window title
         self.setWindowTitle("Number Generator")
 
+        # Get the absolute path of the project directory
+        project_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+        # Define the path for the icon
+        icon_path = os.path.join(project_dir, 'icons', '7.png')
+
         # Set the window icon
-        self.setWindowIcon(QIcon("../icons/7.png"))
+        self.setWindowIcon(QIcon(icon_path))
 
         # Initialize a QTabWidget. This will contain all the tabs in the main window.
         self.tab_widget = QTabWidget()
