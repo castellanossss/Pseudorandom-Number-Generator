@@ -35,7 +35,7 @@ class Presenter:
 
         # Define the project directory and output directory paths
         self.project_dir = os.path.dirname(os.path.dirname(__file__))
-        self.output_dir = os.path.join(self.project_dir, 'output')
+        self.output_dir = os.path.join(self.project_dir, 'Numbers Generated')
 
         # Create the output directory if it doesn't exist
         os.makedirs(self.output_dir, exist_ok=True)
