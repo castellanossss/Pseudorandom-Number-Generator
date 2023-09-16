@@ -26,13 +26,13 @@ class UniformDistributionMethod:
 
     def obtainMinValue(self):
         """
-            Este método devuelve el valor mínimo de Ni.
+            Este método devuelve el valor mínimo para el rango de los numeros Ni.
         """
         return self.min
 
     def obtainMaxValue(self):
         """
-            Este método devuelve el valor máximo de Ni.
+            Este método devuelve el valor máximo para el rango de los numeros Ni.
         """
         return self.max
 
