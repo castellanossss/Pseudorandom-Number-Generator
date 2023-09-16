@@ -5,90 +5,90 @@ from PyQt6.QtGui import QFont
 
 class LCMTabContent(QWidget):
     """
-        This is the Linear Congruential Method tab content class.
-        It inherits from QWidget, a base class for all user interface objects in PyQt.
+        Esta es la clase de contenido de la pestaña Método Lineal Congruencial.
+        Hereda de QWidget, una clase base para todos los objetos de la interfaz de usuario en PyQt.
     """
-    # Define a PyQt signal to be emitted when the generate button is clicked
+    # Definir una señal PyQt que se emitirá cuando se haga clic en el botón generar
     generate_button_clicked = pyqtSignal()
 
     def __init__(self):
         """
-            This is the constructor method for the LCMTabContent class.
-            It initializes the tab and its components.
+            Este es el método constructor de la clase LCMTabContent.
+            Inicializa la pestaña y sus componentes.
         """
         super().__init__()
 
-        # Initialize and position the xo param label and spinbox
+        # Inicializa y posiciona la etiqueta del parámetro xo y el cuadro de giro.
         self.xo_label = QLabel("Parameter Xo", self)
         self.xo_label.move(20, 21)
         self.xo_spinbox = QSpinBox(self)
         self.xo_spinbox.setRange(int(-1e+9), int(1e+9))
         self.xo_spinbox.move(100, 20)
 
-        # Initialize and position the k param label and spinbox
+        # Inicializa y posiciona la etiqueta del parámetro k y el cuadro de giro.
         self.k_label = QLabel("Parameter k", self)
         self.k_label.move(230, 21)
         self.k_spinbox = QSpinBox(self)
         self.k_spinbox.setRange(int(-1e+9), int(1e+9))
         self.k_spinbox.move(300, 20)
 
-        # Initialize and position the c param label and spinbox
+        # Inicializa y posiciona la etiqueta del parámetro c y el cuadro de giro.
         self.c_label = QLabel("Parameter c", self)
         self.c_label.move(420, 21)
         self.c_spinbox = QSpinBox(self)
         self.c_spinbox.setRange(int(-1e+9), int(1e+9))
         self.c_spinbox.move(490, 20)
 
-        # Initialize and position the g param label and spinbox
+        # Inicializa y posiciona la etiqueta del parámetro g y el cuadro de giro.
         self.g_label = QLabel("Parameter g", self)
         self.g_label.move(610, 21)
         self.g_spinbox = QSpinBox(self)
         self.g_spinbox.setRange(int(-1e+9), int(1e+9))
         self.g_spinbox.move(680, 20)
 
-        # Initialize and position the range minimum label and spinbox
+        # Inicializa y posiciona la etiqueta de rango mínimo y el cuadro de giro.
         self.min_val_label = QLabel("Minimum Value", self)
         self.min_val_label.move(800, 21)
         self.min_val_spinbox = QSpinBox(self)
         self.min_val_spinbox.setRange(int(-1e+9), int(1e+9))
         self.min_val_spinbox.move(895, 20)
 
-        # Initialize and position the range maximum label and spinbox
+        # Inicializa y posiciona la etiqueta de rango máximo y el cuadro de giro.
         self.max_val_label = QLabel("Maximum Value", self)
         self.max_val_label.move(1010, 21)
         self.max_val_spinbox = QSpinBox(self)
         self.max_val_spinbox.setRange(int(-1e+9), int(1e+9))
         self.max_val_spinbox.move(1105, 20)
 
-        # Initialize and position the iterations amount label and spinbox
+        # Inicializa y posiciona la etiqueta de cantidad de iteraciones y el cuadro de giro.
         self.iterations_amount_label = QLabel("Number of Iterations", self)
         self.iterations_amount_label.move(20, 61)
         self.iterations_amount_spinbox = QSpinBox(self)
         self.iterations_amount_spinbox.setRange(0, int(1e+9))
         self.iterations_amount_spinbox.move(140, 60)
 
-        # Initialize and position the generate button
+        # Inicializa y posiciona el boton de generar.
         self.generate_button = QPushButton("Generate", self)
 
-        # Center the button in the bottom row
+        # Centra el botón en la fila inferior.
         self.generate_button.move(600, 61)
 
-        # Initialize a horizontal line as a separator
+        # Inicializar una línea horizontal como separador.
         self.line = QFrame(self)
         self.line.setFrameShape(QFrame.Shape.HLine)
         self.line.setFrameShadow(QFrame.Shadow.Sunken)
         self.line.setGeometry(10, 100, 1280, 3)
 
-        # Initialize data variables to None. These will hold the data for the table and graph.
+        # Inicializa las variables de datos en None. Estos contendrán los datos para la tabla y el gráfico.
         self.data1 = None
         self.data2 = None
         self.data3 = None
 
-        # Initialize a QTableWidget. This will be used to display the data.
+        # Inicializa un QTableWidget. Esto se utilizará para mostrar los datos.
         self.table = QTableWidget(self)
         self.table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
 
-        # Set the style of the table
+        # Establece el estilo de la tabla.
         self.table.setStyleSheet("""
                     QTableWidget {
                         gridline-color: black;
@@ -120,45 +120,45 @@ class LCMTabContent(QWidget):
                     }
                 """)
 
-        # Position and resize the table
+        # Posiciona y cambia el tamaño de la tabla.
         self.table.move(10, 110)
         self.table.resize(640, 460)
 
-        # Disable editing of the table contents
+        # Deshabilitar la edición del contenido de la tabla.
         self.table.setEditTriggers(QTableWidget.EditTrigger.NoEditTriggers)
 
-        # Hide the vertical header of the table
+        # Ocultar el encabezado vertical de la tabla.
         self.table.verticalHeader().setVisible(False)
 
-        # Initialize a PlotWidget. This will be used to display the graph.
+        # Inicializa un PlotWidget. Esto se utilizará para mostrar el gráfico.
         self.graphWidget = pg.PlotWidget(self)
 
-        # Position and resize the graph widget
+        # Posiciona y cambia el tamaño del widget gráfico.
         self.graphWidget.move(655, 110)
         self.graphWidget.resize(640, 440)
 
-        # Set labels for the axes and a title for the graph
+        # Establece etiquetas para los ejes y un título para el gráfico.
         self.graphWidget.setLabel('left', 'Ri')
         self.graphWidget.setLabel('bottom', 'Iteration')
         self.graphWidget.setTitle('Scatter Plot')
 
-        # Set the background color of the graph to white
+        # Establece el color de fondo del gráfico en blanco.
         self.graphWidget.setBackground('w')
         self.graphWidget.getAxis('bottom').setPen(pg.mkPen(color='k', width=1))
         self.graphWidget.getAxis('left').setPen(pg.mkPen(color='k', width=1))
         self.graphWidget.getAxis('bottom').setTextPen(pg.mkPen(color='k', width=1))
         self.graphWidget.getAxis('left').setTextPen(pg.mkPen(color='k', width=1))
 
-        # Set the title color of the graph to black
+        # Establece el color del título del gráfico en negro.
         self.graphWidget.setTitle('Scatter Plot', color='k')
 
-        # Connect the generate button's clicked signal to its slot
+        # Conecta la señal del boton cuando se da click sobre el.
         self.generate_button.clicked.connect(self.generate_button_clicked)
 
     def set_data(self, data1, data2, data3):
         """
-            This method sets the data for the table and graph.
-            It takes three arguments: data1, data2, and data3, which are lists of data points.
+            Este método establece los datos para la tabla y el gráfico.
+            Se necesitan tres argumentos: data1, data2 y data3, que son listas de puntos de datos.
         """
         self.data1 = data1
         self.data2 = data2
@@ -166,28 +166,28 @@ class LCMTabContent(QWidget):
 
     def generateTable(self):
         """
-            This method generates the table and scatter plot for the tab.
-            It first checks if the data is not None, then clears the table and graph,
-            fills the table with data, and creates a scatter plot.
+            Este método genera la tabla y el diagrama de dispersión para la pestaña.
+            Primero verifica si los datos no son None, luego borra la tabla y el gráfico.
+            Llena la tabla con datos y crea un diagrama de dispersión.
         """
 
-        # Check if data is None
+        # Comprobar si los datos son None.
         if self.data1 is None or self.data2 is None or self.data3 is None:
             return
 
-        # Clear the table and graph before adding new data
+        # Borra la tabla y el gráfico antes de agregar nuevos datos.
         self.table.clearContents()
         self.graphWidget.clear()
 
-        # Set the number of rows and columns in the table
+        # Establece el número de filas y columnas de la tabla.
         self.table.setRowCount(self.iterations_amount_spinbox.value())
         self.table.setColumnCount(4)
 
-        # Set the header labels for the table
+        # Establece las etiquetas del encabezado de la tabla.
         header_labels = ['Iteration', 'Xi', 'Ri', 'Ni']
         self.table.setHorizontalHeaderLabels(header_labels)
 
-        # Fill the table with data
+        # Llenar la tabla con datos.
         for i in range(self.iterations_amount_spinbox.value()):
             item_i = QTableWidgetItem(str(i + 1))
             item_i.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
@@ -205,62 +205,62 @@ class LCMTabContent(QWidget):
             item3.setTextAlignment(Qt.AlignmentFlag.AlignCenter)
             self.table.setItem(i, 3, item3)
 
-        # Set the column headers to bold
+        # Establece los encabezados de las columnas en negrita.
         font = QFont()
         font.setBold(True)
         self.table.horizontalHeader().setFont(font)
 
-        # Create a scatter plot with the data
+        # Crea un diagrama de dispersión con los datos.
         scatter = pg.ScatterPlotItem(size=10)
         scatter.setBrush(pg.mkBrush('r'))
 
         for i in range(1, self.iterations_amount_spinbox.value() + 1):
             scatter.addPoints([i], [self.data2[i - 1]])
 
-        # Add the scatter plot to the graph widget
+        # Agregue el diagrama de dispersión al widget de gráfico.
         self.graphWidget.addItem(scatter)
 
-        # Adjust the graph's range to fit the data
+        # Ajustar el rango del gráfico para que se ajuste a los datos.
         self.graphWidget.getViewBox().autoRange()
 
     def get_xo_spin_box_value(self):
         """
-            This method returns the value of the xo param spin box.
+            Este método devuelve el valor del cuadro de giro del parámetro xo.
         """
         return self.xo_spinbox.value()
 
     def get_k_spin_box_value(self):
         """
-            This method returns the value of the k param spin box.
+            Este método devuelve el valor del cuadro de giro del parámetro k.
         """
         return self.k_spinbox.value()
 
     def get_c_spin_box_value(self):
         """
-            This method returns the value of the c param spin box.
+            Este método devuelve el valor del cuadro de giro del parámetro c.
         """
         return self.c_spinbox.value()
 
     def get_g_spin_box_value(self):
         """
-            This method returns the value of the g param spin box.
+            Este método devuelve el valor del cuadro de giro del parámetro g.
         """
         return self.g_spinbox.value()
 
     def get_min_spin_box_value(self):
         """
-            This method returns the value of the minimum range spin box.
+            Este método devuelve el valor del cuadro de giro de rango mínimo.
         """
         return self.min_val_spinbox.value()
 
     def get_max_spin_box_value(self):
         """
-            This method returns the value of the maximum range spin box.
+            Este método devuelve el valor del cuadro de giro de rango máximo.
         """
         return self.max_val_spinbox.value()
 
     def get_iterations_spin_box_value(self):
         """
-            This method returns the value of the iterations amount spin box.
+            Este método devuelve el valor del cuadro de número de cantidad de iteraciones.
         """
         return self.iterations_amount_spinbox.value()

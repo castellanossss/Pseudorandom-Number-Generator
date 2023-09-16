@@ -3,29 +3,27 @@ from scipy.stats import norm
 
 class NormalInvDistributionMethod:
     """
-        This class implements the Normal Inverse Distribution Method for generating pseudo-random numbers.
+        Esta clase implementa el método de distribución inversa normal para generar números pseudoaleatorios.
     """
 
     def __init__(self, num_amount_xi, min, max, iterations):
         """
-            This is the constructor method for the NormalInvDistributionMethod class.
-            It initializes the class with the given parameters.
+            Este es el método constructor de la clase NormalInvDistributionMethod.
+            Inicializa la clase con los parámetros dados.
         """
-        self.num_amount_xi = num_amount_xi  # Number of Xi values to generate
-        self.min = min  # Minimum value for random number generation
-        self.max = max  # Maximum value for random number generation
-        self.iterations = iterations  # Number of iterations
-        self.ri_values = []  # List to hold Ri values
-        self.ni_values = []  # List to hold Ni values
-        self.random_values_1 = []  # List to hold first set of random values
-        self.random_values_2 = []  # List to hold second set of random values
-        self.xi_values = []  # List to hold Xi values
-        self.intervals_values = []  # List to hold interval values
-        self.frequencies_values = []  # List to hold frequency values
+        self.num_amount_xi = num_amount_xi  # Cantidad de numeros Xi a generar
+        self.min = min  # Valor minimo para el rango de numeros aleatorios a crear
+        self.max = max  # Valor maximo para el rango de numeros aleatorios a crear
+        self.iterations = iterations  # Numero de iteraciones
+        self.ri_values = []  # Lista para almacenar los valores de Ri
+        self.ni_values = []  # Lista para almacenar los valores de Ni
+        self.random_values_1 = []  # Lista para almacenar el primer arreglo de numeros aleatorios
+        self.random_values_2 = []  # Lista para almacenar el segundo arreglo de numeros aleatorios
+        self.xi_values = []  # Lista para almacenar los valores de Xi
 
     def fillRandomValues1(self):
         """
-            This method generates and stores the first set of random values using a uniform distribution.
+            Este método genera y almacena el primer conjunto de valores aleatorios utilizando una distribución uniforme.
         """
         for i in range(self.num_amount_xi):
             random_number = np.random.uniform(self.min, self.max)
@@ -33,7 +31,7 @@ class NormalInvDistributionMethod:
 
     def fillRandomValues2(self):
         """
-            This method generates and stores the second set of random values using a uniform distribution.
+            Este método genera y almacena el segundo conjunto de valores aleatorios utilizando una distribución uniforme.
         """
         for i in range(self.num_amount_xi):
             random_value = np.random.uniform()
@@ -41,7 +39,7 @@ class NormalInvDistributionMethod:
 
     def fillXiValues(self):
         """
-            This method calculates and stores Xi values based on the two sets of random values.
+            Este método calcula y almacena valores Xi en función de los dos conjuntos de valores aleatorios.
         """
         for i in range(len(self.random_values_1)):
             for j in range(len(self.random_values_2)):
@@ -49,19 +47,19 @@ class NormalInvDistributionMethod:
 
     def findXiValuesAverage(self):
         """
-            This method calculates and returns the average of the Xi values.
+            Este método calcula y devuelve el promedio de los valores Xi.
         """
         return np.mean(self.xi_values)
 
     def findXiValuesSDeviation(self):
         """
-            This method calculates and returns the standard deviation of the Xi values.
+            Este método calcula y devuelve la desviación estándar de los valores Xi.
         """
         return np.std(self.xi_values)
 
     def fillRiValues(self):
         """
-            This method generates and stores Ri values using a uniform distribution.
+            Este método genera y almacena valores de Ri utilizando una distribución uniforme.
         """
         for i in range(self.iterations):
             random_number = np.random.uniform()
@@ -69,7 +67,7 @@ class NormalInvDistributionMethod:
 
     def fillNiValues(self):
         """
-            This method calculates and stores Ni values based on the Ri values using the inverse of the normal distribution.
+            Este método calcula y almacena los valores de Ni basándose en los valores de Ri utilizando la distribución inversa de la normal.
         """
         average = self.findXiValuesAverage()
         standard_deviation = self.findXiValuesSDeviation()
@@ -79,16 +77,12 @@ class NormalInvDistributionMethod:
 
     def get_ri_values_array(self):
         """
-            This method returns the array of Ri values.
+            Este método devuelve el arreglo de valores Ri.
         """
         return self.ri_values
 
     def get_ni_values_array(self):
         """
-            This method returns the array of Ri values.
+            Este método devuelve el arreglo de valores Ni.
         """
         return self.ni_values
-
-
-
-
