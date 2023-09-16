@@ -1,38 +1,38 @@
 class MultiplicativeCongruentialMethod:
     """
-        This class implements the Multiplicative Congruential Method for generating pseudo-random numbers.
+        Esta clase implementa el método multiplicativo congruencial para generar números pseudoaleatorios.
     """
 
     def __init__(self, xo, t, g, min, max, iterations):
         """
-            This is the constructor method for the MultiplicativeCongruentialMethod class.
-            It initializes the class with the given parameters.
+            Este es el método constructor de la clase MultiplicativeCongruentialMethod.
+            Inicializa la clase con los parámetros dados.
         """
-        self.xi_values = []  # List to hold Xi values
-        self.ri_values = []  # List to hold Ri values
-        self.ni_values = []  # List to hold Ni values
-        self.xo = xo  # Initial seed value
-        self.t = t  # Multiplier parameter
-        self.g = g  # Modulus parameter
-        self.min = min  # Minimum value for Ni
-        self.max = max  # Maximum value for Ni
-        self.iterations = iterations  # Number of iterations
+        self.xi_values = []  # Lista para almacenar los valores de Xi
+        self.ri_values = []  # Lista para almacenar los valores de Ri
+        self.ni_values = []  # Lista para almacenar los valores de Ni
+        self.xo = xo  # Valor inicial semilla
+        self.t = t  # Parametro multiplicador
+        self.g = g  # Parametro del modulo
+        self.min = min  # Valor minimo para el rango
+        self.max = max  # Valor maximo para el rango
+        self.iterations = iterations  # Numero de iteraciones
 
     def generateAValue(self):
         """
-            This method generates the 'a' value used in the multiplicative congruential formula.
+            Este método genera el valor 'a' utilizado en la fórmula congruente multiplicativa.
         """
         return (8 * self.t) + 3
 
     def determinateNumberAmount(self):
         """
-            This method determines the number of possible unique values.
+            Este método determina el número de posibles valores únicos.
         """
         return 2 ** self.g
 
     def fillFirstXiValue(self):
         """
-            This method calculates and stores the first Xi value.
+            Este método calcula y almacena el primer valor Xi.
         """
         a = self.generateAValue()
         amount = self.determinateNumberAmount()
@@ -41,7 +41,7 @@ class MultiplicativeCongruentialMethod:
 
     def fillXiValues(self):
         """
-            This method calculates and stores all subsequent Xi values.
+            Este método calcula y almacena todos los valores Xi posteriores.
         """
         a = self.generateAValue()
         amount = self.determinateNumberAmount()
@@ -51,7 +51,7 @@ class MultiplicativeCongruentialMethod:
 
     def fillRiAndNiValues(self):
         """
-            This method calculates and stores all Ri and Ni values.
+            Este método calcula y almacena todos los valores de Ri y Ni.
         """
         num_amount = self.determinateNumberAmount()
         for i in range(self.iterations):
@@ -63,18 +63,18 @@ class MultiplicativeCongruentialMethod:
 
     def get_xi_values_array(self):
         """
-            This method returns the array of Xi values.
+            Este método devuelve el arreglo de valores Xi.
         """
         return self.xi_values
 
     def get_ri_values_array(self):
         """
-            This method returns the array of Ri values.
+            Este método devuelve el arreglo de valores Ri.
         """
         return self.ri_values
 
     def get_ni_values_array(self):
         """
-            This method returns the array of Ni values.
+            Este método devuelve el arreglo de valores Ni.
         """
         return self.ni_values

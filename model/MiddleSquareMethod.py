@@ -1,25 +1,25 @@
 class MiddleSquareMethod:
     """
-        This class implements the Middle Square Method for generating pseudo-random numbers.
+        Esta clase implementa el método del cuadrado medio para generar números pseudoaleatorios.
     """
 
     def __init__(self, seed, min, max, numAmount):
         """
-            This is the constructor method for the MiddleSquareMethod class.
-            It initializes the class with the given parameters.
+            Este es el método constructor de la clase MiddleSquareMethod.
+            Inicializa la clase con los parámetros dados.
         """
-        self.seed = seed  # Initial seed value
-        self.niValues = []  # List to hold Ni values
-        self.riValues = []  # List to hold Ri values
-        self.xiValues = []  # List to hold Xi values
-        self.centers = []  # List to hold center values
-        self.min = min  # Minimum value for Ni
-        self.max = max  # Maximum value for Ni
-        self.numAmount = numAmount  # Number of random numbers to generate
+        self.seed = seed  # Valor inicial de la semilla
+        self.niValues = []  # Lista para almacenar los valores de Xi
+        self.riValues = []  # Lista para almacenar los valores de Ri
+        self.xiValues = []  # Lista para almacenar los valores de Ni
+        self.centers = []  # Lista para almacenar los valores centrales
+        self.min = min  # Valor Ni minimo
+        self.max = max  # Valor Ni maximo
+        self.numAmount = numAmount  # Numero de numeros pseudoaleatorios a generar
 
     def generateRandoms(self):
         """
-            This method generates the pseudorandom numbers using the middle square method.
+            Este método genera números pseudoaleatorios utilizando el método del cuadrado medio.
         """
         seed = self.seed
         len_seed = len(str(self.seed))
@@ -36,13 +36,13 @@ class MiddleSquareMethod:
 
     def genNiNumber(self, ri):
         """
-            This method generates a Ni value from a given Ri value.
+            Este método genera un valor de Ni a partir de un valor de Ri determinado.
         """
         return self.min + ((self.max - self.min) * ri)
 
     def getCenter(self, num):
         """
-            This method extracts the center digits from a given number.
+            Este método extrae los dígitos centrales de un número determinado.
         """
         len_seed = len(str(self.seed))
         len_num = len(str(num))
@@ -63,8 +63,8 @@ class MiddleSquareMethod:
 
     def getDivNum(self, length):
         """
-            This method generates a divisor number based on the length of the seed.
-            It is used to calculate the Ri values.
+            Este método genera un número divisor basado en la longitud de la semilla.
+            Se utiliza para calcular los valores de Ri.
         """
         num = ""
         for i in range(length):
@@ -74,18 +74,18 @@ class MiddleSquareMethod:
 
     def get_xi_values_array(self):
         """
-            This method returns the array of Xi values.
+            Este método devuelve el arreglo de valores Xi.
         """
         return self.xiValues
 
     def get_ri_values_array(self):
         """
-            This method returns the array of Ri values.
+            Este método devuelve el arreglo de valores Ri.
         """
         return self.riValues
 
     def get_ni_values_array(self):
         """
-            This method returns the array of Ni values.
+            Este método devuelve el arreglo de valores Ni.
         """
         return self.niValues
