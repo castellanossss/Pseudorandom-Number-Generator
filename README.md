@@ -38,7 +38,7 @@ For all these reviews, you must open the **cmd** of your computer.
 
       > pip install numpy
 
-Run the same process for the following libraries: **pyqt6, matplotlib and scipy**.
+Run the same process for the following libraries: **pyqt6, pyqtgraph, matplotlib and scipy**.
 
 Once you are sure that the **required libraries** are installed, let's move on to the next step...
 
